@@ -63,8 +63,11 @@ for src_url in urls_source_list:
             best_score = score
             best_match = dest_url
 
+    # Determina status code da implementare
+    status_code = 200 if src_url in urls_destination_list else 301
+
     # Aggiunge il risultato alla lista dei mappings
-    mappings.append({"URL sorgente": src_url, "Best Match": best_match, "Score": best_score})
+    mappings.append({"URL sorgente": src_url, "Status code da implementare": status_code, "Best Match": best_match, "Score": best_score})
 
 
 
