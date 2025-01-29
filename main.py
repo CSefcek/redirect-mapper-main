@@ -82,13 +82,9 @@ destinations_no_200_df = pd.DataFrame(destinations_no_200)
 
 # Identifica le URL di destinazione inutilizzate
 used_destinations = set(mappings_df["Best Match"].dropna())
-unused_destinations = [
-    {"URL destinazione": dest_url}
-    for dest_url in urls_destination_list
-    if dest_url not in used_destinations
-]
+unused_destinations_set = {dest_url for dest_url in urls_destination_list if dest_url not in used_destinations} # Python set comprehension
 
-unused_destinations_df = pd.DataFrame(unused_destinations)
+unused_destinations_df = pd.DataFrame({"URL destinazione": list(unused_destinations_set)})
 
 
 # Salva i risultati in un Excel
