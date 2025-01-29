@@ -1,6 +1,11 @@
 import pandas as pd
 from rapidfuzz import fuzz
 
+
+#Richiedere USER INPUT per avere URL dell'HOMEPAGE
+homepage_url = input("Inserisci l'URL della homepage (es. https://www.example.com/): ").strip()
+
+
 #INPUTS
 
 #Legge tutto il contenuto della tab "crawl" da due file separati
