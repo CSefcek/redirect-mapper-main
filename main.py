@@ -1,19 +1,3 @@
-# EXCEL RELATED ESSENTIAL REQUIREMENTS
-
-#open an Excel file ***DONE!!!***
-
-#read the first columns of its first worksheet: list of old URLs, list of new URLs (in this case URLs must be scraped with Screaming Frog) ***DONE!!!***
-#OR!!!
-#remove all the non required columns of the Screaming Frog
-#read all the remaining columns of the Screaming Frog (URL, status code, title, description, h1, redirect destination)
-#open another Excel file containing the list of new URLs
-
-#output a new Excel file or create a second worksheet within the same file             ***DONE!!!***
-#create 3 columns in the new worksheet: URL sorgente, Status code, URL destinazione)
-#fill the 1st column with the list of old URLs (keep the same order of the input file) ***DONE!!!***
-#fill the 2nd column with correct status code
-#fill the 3rd column with matched destination URLs
-
 import pandas as pd
 from rapidfuzz import fuzz
 
