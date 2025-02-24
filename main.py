@@ -4,6 +4,7 @@ from rapidfuzz import fuzz
 
 #Richiedere USER INPUT per avere URL dell'HOMEPAGE
 homepage_url = input("Inserisci l'URL della homepage (es. https://www.example.com/): ").strip()
+homepage_slash_count = homepage_url.count('/') # Conta gli slash nella URL dell'homepage
 
 
 #INPUTS
@@ -50,6 +51,17 @@ mappings = []
 destinations_no_200 = []
 seen_non_200_urls = set() 
 
+
+# Funzione per ottenere la parent folder
+def get_parent_folder(url):
+    """Restituisce la parent folder di una data URL se possibile, altrimenti None"""
+    if url.count('/') <= homepage_slash_count:
+        return None
+    parent_url = url.rsplit('/', 1)[0] #Rimuove ultimo segmento
+    return parent_url if parent_url in urls_destination_list else None
+
+
+
 for src_url in urls_source_list:
     best_match = None
     best_score = 0
@@ -61,6 +73,17 @@ for src_url in urls_source_list:
         if score > best_score:
             best_score = score
             best_match = dest_url
+
+
+    # Controlla che lo score sia inferiore a 60
+    if best_match and best_score < 60:
+        parent_folder = get_parent_folder(best_match) # Cerca la parent folder
+
+        if parent_folder:
+            best_match = parent_folder # Usa la parent folder come best match
+        else:
+            best_match = homepage_url # Usa la homepage se la parent folder non esiste
+
 
     # Determina status code da implementare
     status_code = 200 if src_url in urls_destination_list else 301
