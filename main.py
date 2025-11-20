@@ -122,3 +122,4 @@ with pd.ExcelWriter("mapping_results.xlsx") as writer:
     unused_destinations_df.to_excel(writer, sheet_name="Destinazioni inutilizzate", index=False)
 
 print("Mapping completato! File salvato come 'mapping_results.xlsx'.")
+
